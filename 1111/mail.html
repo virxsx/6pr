@@ -1,0 +1,71 @@
+<HTML>
+
+<HEAD>
+    <TITLE>Поштова форма</TITLE>
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; CHARSET= windows-1251">
+</HEAD>
+
+<BODY>
+    <H1 align=center>Поштова форма</H1>
+    <FORM NAME="mailer" METHOD="post" ACTION="" ENCTYPE="text/plain"
+        onSubmit="(document.mailer.action += mailtoandSubject)">
+        <table border=2 align=center cellspacing=1 cellpadding=2 BgColor=#FFFFE0>
+            <tr>
+                <td>
+                    <FONT size="2" color="#0000CD">Ім'я:</font>
+                </td>
+                <td><INPUT TYPE="text" NAME="Name" size="24" onChange="msg(this.form)"></td>
+            </tr>
+            <tr>
+                <td>
+                    <FONT size="2" color="#0000CD">Тема:</font>
+                </td>
+                <td><INPUT TYPE="text" NAME="Subject" size="24" onChange="msg(this.form)"></td>
+            </tr>
+            <tr>
+                <td>
+                    <FONT size="2" color="#0000CD">Повідомлення:</font>
+                </td>
+                <td><TEXTAREA NAME="Message" COLS=40 ROWS=6 onChange="msg(this.form)"></TEXTAREA></td>
+            </tr>
+            <tr>
+                <td colspan=2 align=center><INPUT TYPE="submit" VALUE="Відп-равити" ONCLICK="return checkIt()">
+                    <INPUT TYPE=reset VALUE=" Очистити ">
+                </td>
+            </tr>
+        </table>
+    </FORM>
+    <SCRIPT LANGUAGE="JavaScript">
+        function checkIt() { 
+            if (document.forms.mailer.Name.value != "") { // функція перевірки поля Name
+            } else {
+                alert("\nОбласть \"Ім'я\" у формі. \n\Будь ласка, введіть своє ім'я."); // ви-водить повідомлення, якщо поле Name не заповнено
+                document.forms.mailer.Name.focus(); // вертає курсор на поле Name
+                return false;
+            }
+           
+            if (document.forms.mailer.Subject.value != "") { // функція перевірки поля Subject
+            } else {
+                alert("\nОбласть \"Тема\" в формі. \n\Будь ласка, введіть, введите те-му."); // виводить повідомлення, якщо поле Subject не заповнено
+                document.forms.mailer.Subject.focus(); // вертає курсор на поле Subject
+                return false;
+            }
+           
+            if (document.forms.mailer.Message.value != "") { // функція перевірки поля Message
+                return true; // ВСЕ ВІДМІННО
+            } else {
+                alert("\nОбласть \"Повідомлення\" в формі. \n\nБудь ласка, напишіть по-відомлення."); // виводить повідомлення, якщо поле Message не заповнено
+                document.forms.mailer.Message.focus(); // вертає курсор на поле Message
+                return false;
+            }
+
+
+        }
+        function msg() { 
+            document.mailer.action = "mailto:astra1990@meta.ua"
+            mailtoandSubject = (('?Subject=' + document.mailer.Subject.value) + '&Body=' + document.mailer.Message.value);
+        }
+    </SCRIPT>
+</BODY>
+
+</HTML>
